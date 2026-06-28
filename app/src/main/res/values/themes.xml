@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.MegaChat" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:background">@color/background</item>
+    </style>
+
+    <style name="Theme.MegaChat.Splash" parent="Theme.SplashScreen">
+        <item name="android:windowLightStatusBar">true</item>
+
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
+        <item name="windowSplashScreenBackground">@color/background</item>
+        <item name="postSplashScreenTheme">@style/Theme.MegaChat</item>
+    </style>
+</resources>

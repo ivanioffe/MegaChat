@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- SignUp/SignIn -->
+    <string name="sign_in">Sign in</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="toggle_password_visibility">Toggle password visibility</string>
+    <string name="toggle_confirm_password_visibility">Toggle confirm password visibility</string>
+    <string name="navigate_back">Navigate back</string>
+
+    <string name="error_email_empty">Email address is required</string>
+    <string name="error_email_invalid">Please enter a valid email address</string>
+    <string name="error_password_empty">Password is required</string>
+    <string name="error_password_invalid">Password contains invalid characters</string>
+    <string name="error_password_too_short">Password must be at least %1$d characters</string>
+    <string name="error_password_too_long">Password must be at most %1$d characters</string>
+    <string name="error_password_mismatch">Passwords do not match</string>
+    <string name="error_user_exists">An account with this email already exists</string>
+    <string name="error_invalid_credentials">Invalid credentials</string>
+
+    <!-- EmailVerification -->
+    <string name="email_verification_title">Please verify your email</string>
+    <string name="email_verification_subtitle_with_email">Your account is awaiting activation. Please activate it via the link sent to %1$s.</string>
+    <string name="email_verification_subtitle_fallback">Your account is awaiting activation. Please activate it via the link sent to your email address.</string>
+    <string name="email_verification_i_verified">I\'ve verified</string>
+    <string name="email_verification_sending">Sending…</string>
+    <string name="email_verification_resend">Resend email</string>
+
+    <string name="email_not_verified_yet">Email is not verified yet. Please check your inbox.</string>
+    <string name="email_verification_sent_success">Verification email sent successfully!</string>
+
+</resources>
