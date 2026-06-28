@@ -10,5 +10,4 @@ data object AuthorizedRoute
 fun NavGraphBuilder.authorized(
     navController: NavHostController,
 ) {
-
 }
