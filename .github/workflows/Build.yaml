@@ -1,0 +1,110 @@
+name: Build
+
+on:
+  pull_request:
+    branches: [ main, dev ]
+  workflow_dispatch:
+
+jobs:
+  check-build-logic-and-lint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: 17
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: wrapper
+          cache-read-only: false
+
+      - name: Check Convention Plugins
+        run: ./gradlew :build-logic:plugins:check
+
+      - name: Run ktlint
+        run: ./gradlew ktlintCheck
+
+      - name: Upload ktlint report
+        if: ${{ failure() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: ktlint.html
+          path: '**/build/reports/ktlint/'
+          retention-days: 7
+
+  verify-screenshots:
+    needs: [ check-build-logic-and-lint ]
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: 17
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: wrapper
+          cache-read-only: false
+
+      - name: Run Roborazzi Verification
+        run: ./gradlew verifyRoborazziDebug --stacktrace
+
+      - name: Upload Roborazzi Failure Reports
+        if: ${{ failure() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: roborazzi-visual-diffs
+          path: '**/build/reports/roborazzi/'
+          retention-days: 7
+
+      - name: Upload Roborazzi Failure Outputs
+        uses: actions/upload-artifact@v4
+        if: ${{ failure() }}
+        with:
+          name: screenshot-diff
+          path: '**/build/outputs/roborazzi/'
+          retention-days: 7
+
+  unit-test:
+    needs: [ check-build-logic-and-lint ]
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: 17
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: wrapper
+          cache-read-only: false
+
+      - name: Run unit tests
+        run: ./gradlew testDebugUnitTest
+
+      - name: Upload test report
+        if: ${{ failure() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: unit_test_report
+          path: '**/build/reports/tests/testDebugUnitTest/'
+          retention-days: 7
