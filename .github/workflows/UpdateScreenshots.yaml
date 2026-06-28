@@ -13,6 +13,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: ${{ github.ref }}
+          token: ${{ secrets.PAT_TOKEN }}
 
       - name: Setup Java
         uses: actions/setup-java@v4
@@ -33,4 +34,4 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           file_pattern: '*/*.png'
-          commit_message: "Update screenshots [skip ci]"
+          commit_message: "Update screenshots"
