@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="error_no_internet">No network connection. Please check your internet.</string>
+    <string name="error_service_unavailable">Server is temporarily unavailable. Please try again later.</string>
+    <string name="error_too_many_requests">Too many requests. Please wait a moment.</string>
+    <string name="error_unknown">Something went wrong.</string>
+</resources>
